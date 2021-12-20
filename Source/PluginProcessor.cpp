@@ -119,7 +119,16 @@ const juce::String SimpleEQAudioProcessor::getProgramName (int index)
 
 void SimpleEQAudioProcessor::changeProgramName (int index, const juce::String& newName){}
 
-void SimpleEQAudioProcessor::prepareToPlay (double sampleRate, int samplesPerBlock){}
+void SimpleEQAudioProcessor::prepareToPlay (double sampleRate, int samplesPerBlock)
+{
+    juce::dsp::ProcessSpec spec;
+    spec.sampleRate = sampleRate;
+    spec.maximumBlockSize = samplesPerBlock;
+    spec.numChannels = 1;
+    
+    leftChain.prepare(spec);
+    rightChain.prepare(spec);
+}
 
 void SimpleEQAudioProcessor::releaseResources(){}
 
@@ -151,10 +160,16 @@ void SimpleEQAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer, juc
     for (auto i = totalNumInputChannels; i < totalNumOutputChannels; ++i)
         buffer.clear (i, 0, buffer.getNumSamples());
 
-    for (int channel = 0; channel < totalNumInputChannels; ++channel)
-    {
-        auto* channelData = buffer.getWritePointer (channel);
-    }
+    juce::dsp::AudioBlock<float> block(buffer);
+    
+    auto leftBlock = block.getSingleChannelBlock(0);
+    auto rightBlock = block.getSingleChannelBlock(1);
+    
+    juce::dsp::ProcessContextReplacing<float> leftContext(leftBlock);
+    juce::dsp::ProcessContextReplacing<float> rightContext(rightBlock);
+    
+    leftChain.process(leftContext);
+    rightChain.process(rightContext);
 }
 
 bool SimpleEQAudioProcessor::hasEditor() const
