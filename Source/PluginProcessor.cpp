@@ -184,13 +184,25 @@ bool SimpleEQAudioProcessor::hasEditor() const
 
 juce::AudioProcessorEditor* SimpleEQAudioProcessor::createEditor()
 {
-    //return new SimpleEQAudioProcessorEditor (*this);
-    return new juce::GenericAudioProcessorEditor(*this);
+    return new SimpleEQAudioProcessorEditor (*this);
+//    return new juce::GenericAudioProcessorEditor(*this);
 }
 
-void SimpleEQAudioProcessor::getStateInformation (juce::MemoryBlock& destData){}
+void SimpleEQAudioProcessor::getStateInformation (juce::MemoryBlock& destData)
+{
+    juce::MemoryOutputStream mos(destData, true);
+    apvts.state.writeToStream(mos);
+}
 
-void SimpleEQAudioProcessor::setStateInformation (const void* data, int sizeInBytes){}
+void SimpleEQAudioProcessor::setStateInformation (const void* data, int sizeInBytes)
+{
+    auto tree = juce::ValueTree::readFromData(data, sizeInBytes);
+    if(tree.isValid())
+    {
+        apvts.replaceState(tree);
+        updateFilters();
+    }
+}
 
 void SimpleEQAudioProcessor::updateCoefficients(Coefficients& old, const Coefficients& replacements)
 {
