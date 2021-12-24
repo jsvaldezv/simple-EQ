@@ -65,6 +65,8 @@ public:
     
     void timerCallback() override;
     
+    void resized() override;
+    
 private:
     
     juce::Atomic<bool> parametersChanged {false};
@@ -74,6 +76,12 @@ private:
     void updateChain();
     
     SimpleEQAudioProcessor& audioProcessor;
+    
+    juce::Image background;
+    
+    juce::Rectangle<int> getRenderArea();
+    
+    juce::Rectangle<int> getAnalisisArea();
 };
 
 class SimpleEQAudioProcessorEditor  : public juce::AudioProcessorEditor
