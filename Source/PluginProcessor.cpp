@@ -113,9 +113,7 @@ int SimpleEQAudioProcessor::getCurrentProgram()
     return 0;
 }
 
-void SimpleEQAudioProcessor::setCurrentProgram (int index)
-{
-}
+void SimpleEQAudioProcessor::setCurrentProgram (int index){}
 
 const juce::String SimpleEQAudioProcessor::getProgramName (int index)
 {
@@ -144,7 +142,6 @@ void SimpleEQAudioProcessor::prepareToPlay (double sampleRate, int samplesPerBlo
     spec.numChannels = getTotalNumOutputChannels();
     osc.prepare(spec);
     osc.setFrequency(200);
-    
 }
 
 void SimpleEQAudioProcessor::releaseResources(){}
@@ -181,10 +178,6 @@ void SimpleEQAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer, juc
 
     // PROCESS BUFFER
     juce::dsp::AudioBlock<float> block(buffer);
-    
-//    buffer.clear();
-//    juce::dsp::ProcessContextReplacing<float> stereoContext(block);
-//    osc.process(stereoContext); 
     
     auto leftBlock = block.getSingleChannelBlock(0);
     auto rightBlock = block.getSingleChannelBlock(1);
@@ -224,11 +217,6 @@ void SimpleEQAudioProcessor::setStateInformation (const void* data, int sizeInBy
         apvts.replaceState(tree);
         updateFilters();
     }
-}
-
-void updateCoefficients(Coefficients& old, const Coefficients& replacements)
-{
-    *old = *replacements;
 }
 
 void SimpleEQAudioProcessor::updateLowCutFilters(const ChainSettings& chainSettings)
@@ -285,6 +273,11 @@ void SimpleEQAudioProcessor::updatePeakFilter(const ChainSettings& chainSettings
     
     updateCoefficients(leftChain.get<ChainPositions::Peak>().coefficients, peakCoefficients);
     updateCoefficients(rightChain.get<ChainPositions::Peak>().coefficients, peakCoefficients);
+}
+
+void updateCoefficients(Coefficients& old, const Coefficients& replacements)
+{
+    *old = *replacements;
 }
 
 ChainSettings getChainSettings(juce::AudioProcessorValueTreeState& apvts)

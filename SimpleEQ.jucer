@@ -13,6 +13,13 @@
             file="Source/PluginEditor.cpp"/>
       <FILE id="uGGVE7" name="PluginEditor.h" compile="0" resource="0" file="Source/PluginEditor.h"/>
     </GROUP>
+    <GROUP id="{347B29BE-970C-3C4F-B385-F81B7751EA13}" name="DSP">
+      <FILE id="Lb0azY" name="ChainSettings.h" compile="0" resource="0" file="Source/ChainSettings.h"/>
+      <FILE id="m3LatV" name="DSPHelpers.h" compile="0" resource="0" file="Source/DSPHelpers.h"/>
+      <FILE id="TyCodG" name="Fifo.h" compile="0" resource="0" file="Source/Fifo.h"/>
+      <FILE id="diXTVY" name="SingleChannelSampleFifo.h" compile="0" resource="0"
+            file="Source/SingleChannelSampleFifo.h"/>
+    </GROUP>
   </MAINGROUP>
   <JUCEOPTIONS JUCE_STRICT_REFCOUNTEDPOINTER="1" JUCE_VST3_CAN_REPLACE_VST2="0"/>
   <EXPORTFORMATS>
