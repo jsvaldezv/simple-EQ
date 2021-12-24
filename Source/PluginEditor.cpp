@@ -12,10 +12,12 @@ void LookAndFeel::drawRotarySlider (juce::Graphics& g,
     
     auto bounds = Rectangle<float>(x, y, width, height);
     
-    g.setColour(Colour(97u, 18u, 167u));
+    auto enabled = slider.isEnabled();
+    
+    g.setColour(enabled ? Colour(97u, 18u, 167u) : Colours::darkgrey);
     g.fillEllipse(bounds);
     
-    g.setColour(Colour(255u, 154u, 1u));
+    g.setColour(enabled ? Colour(255u, 154u, 1u) : Colours::grey);
     g.drawEllipse(bounds, 1.f);
     
     if(auto* rswl = dynamic_cast<RotarySliderWithLabels*>(&slider))
@@ -101,22 +103,8 @@ void LookAndFeel::drawToggleButton (juce::Graphics &g,
         auto bounds = toggleButton.getLocalBounds();
         g.drawRect(bounds);
         
-        auto insetRect = bounds.reduced(4);
-        
-        Path randomPath;
-        Random r;
-        
-        randomPath.startNewSubPath(insetRect.getX(), insetRect.getY() + insetRect.getHeight() * r.nextFloat());
-        
-        for(auto x = insetRect.getX() + 1; x < insetRect.getRight(); x += 2)
-        {
-            randomPath.lineTo(x,
-                              insetRect.getY() + insetRect.getHeight() * r.nextFloat());
-        }
-        
-        g.strokePath(randomPath, PathStrokeType(1.f));
+        g.strokePath(analyzerButton->randomPath, PathStrokeType(1.f));
     }
-    
 }
 
 void RotarySliderWithLabels::paint(juce::Graphics& g)
@@ -556,27 +544,27 @@ juce::Rectangle<int> ResponseCurveComponent::getAnalisisArea()
 }
 
 SimpleEQAudioProcessorEditor::SimpleEQAudioProcessorEditor (SimpleEQAudioProcessor& p)
-    : AudioProcessorEditor (&p),    audioProcessor (p),
-                                    peakFreqSlider(*audioProcessor.apvts.getParameter("Peak Freq"), "Hz"),
-                                    peakGainSlider(*audioProcessor.apvts.getParameter("Peak Gain"), "dB"),
-                                    peakQualitySlider(*audioProcessor.apvts.getParameter("Peak Quality"), ""),
-                                    lowCutFreqSlider(*audioProcessor.apvts.getParameter("LowCut Freq"), "Hz"),
-                                    highCutFreqSlider(*audioProcessor.apvts.getParameter("HighCut Freq"), "Hz"),
-                                    lowCutSlopeSlider(*audioProcessor.apvts.getParameter("LowCut Slope"), "dB/Oct"),
-                                    highCutSlopeSlider(*audioProcessor.apvts.getParameter("HighCut Slope"), "dB/Oct"),
-
-                                    responseCurveComponent(audioProcessor),
-                                    peakFreqSliderAttachment(audioProcessor.apvts, "Peak Freq", peakFreqSlider),
-                                    peakGainSliderAttachment(audioProcessor.apvts, "Peak Gain", peakGainSlider),
-                                    peakQualitySliderAttachment(audioProcessor.apvts, "Peak Quality", peakQualitySlider),
-                                    lowCutFreqSliderAttachment(audioProcessor.apvts, "LowCut Freq", lowCutFreqSlider),
-                                    highCutFreqSliderAttachment(audioProcessor.apvts, "HighCut Freq", highCutFreqSlider),
-                                    lowCutSlopeSliderAttachment(audioProcessor.apvts, "LowCut Slope", lowCutSlopeSlider),
-                                    highCutSlopeSliderAttachment(audioProcessor.apvts, "HighCut Slope", highCutSlopeSlider),
-                                    lowcutBypassButtonAttachment(audioProcessor.apvts, "LowCut Bypassed", lowcutBypassButton),
-                                    peakBypassButtonAttachment(audioProcessor.apvts, "Peak Bypassed", peakBypassButton),
-                                    highcutBypassButtonAttachment(audioProcessor.apvts, "HighCut Bypassed", highcutBypassButton),
-                                    analyserEnabledButtonAttachment(audioProcessor.apvts, "Analyser Enabled", analyserEnabledButton)
+    :   AudioProcessorEditor (&p),
+        audioProcessor (p),
+        peakFreqSlider(*audioProcessor.apvts.getParameter("Peak Freq"), "Hz"),
+        peakGainSlider(*audioProcessor.apvts.getParameter("Peak Gain"), "dB"),
+        peakQualitySlider(*audioProcessor.apvts.getParameter("Peak Quality"), ""),
+        lowCutFreqSlider(*audioProcessor.apvts.getParameter("LowCut Freq"), "Hz"),
+        highCutFreqSlider(*audioProcessor.apvts.getParameter("HighCut Freq"), "Hz"),
+        lowCutSlopeSlider(*audioProcessor.apvts.getParameter("LowCut Slope"), "dB/Oct"),
+        highCutSlopeSlider(*audioProcessor.apvts.getParameter("HighCut Slope"), "dB/Oct"),
+        responseCurveComponent(audioProcessor),
+        peakFreqSliderAttachment(audioProcessor.apvts, "Peak Freq", peakFreqSlider),
+        peakGainSliderAttachment(audioProcessor.apvts, "Peak Gain", peakGainSlider),
+        peakQualitySliderAttachment(audioProcessor.apvts, "Peak Quality", peakQualitySlider),
+        lowCutFreqSliderAttachment(audioProcessor.apvts, "LowCut Freq", lowCutFreqSlider),
+        highCutFreqSliderAttachment(audioProcessor.apvts, "HighCut Freq", highCutFreqSlider),
+        lowCutSlopeSliderAttachment(audioProcessor.apvts, "LowCut Slope", lowCutSlopeSlider),
+        highCutSlopeSliderAttachment(audioProcessor.apvts, "HighCut Slope", highCutSlopeSlider),
+        lowcutBypassButtonAttachment(audioProcessor.apvts, "LowCut Bypassed", lowcutBypassButton),
+        peakBypassButtonAttachment(audioProcessor.apvts, "Peak Bypassed", peakBypassButton),
+        highcutBypassButtonAttachment(audioProcessor.apvts, "HighCut Bypassed", highcutBypassButton),
+        analyserEnabledButtonAttachment(audioProcessor.apvts, "Analyser Enabled", analyserEnabledButton)
 {
     peakFreqSlider.labels.add({0.f, "20Hz"});
     peakFreqSlider.labels.add({1.f, "20kHz"});
@@ -608,6 +596,41 @@ SimpleEQAudioProcessorEditor::SimpleEQAudioProcessorEditor (SimpleEQAudioProcess
     lowcutBypassButton.setLookAndFeel(&lnf);
     highcutBypassButton.setLookAndFeel(&lnf);
     analyserEnabledButton.setLookAndFeel(&lnf);
+    
+    auto safePtr = juce::Component::SafePointer<SimpleEQAudioProcessorEditor>(this);
+    peakBypassButton.onClick = [safePtr]()
+    {
+        if(auto* comp = safePtr.getComponent())
+        {
+            auto bypassed = comp->peakBypassButton.getToggleState();
+            
+            comp->peakFreqSlider.setEnabled(!bypassed);
+            comp->peakGainSlider.setEnabled(!bypassed);
+            comp->peakQualitySlider.setEnabled(!bypassed);
+        }
+    };
+    
+    lowcutBypassButton.onClick = [safePtr]()
+    {
+        if(auto* comp = safePtr.getComponent())
+        {
+            auto bypassed = comp->lowcutBypassButton.getToggleState();
+            
+            comp->lowCutFreqSlider.setEnabled(!bypassed);
+            comp->lowCutSlopeSlider.setEnabled(!bypassed);
+        }
+    };
+    
+    highcutBypassButton.onClick = [safePtr]()
+    {
+        if(auto* comp = safePtr.getComponent())
+        {
+            auto bypassed = comp->highcutBypassButton.getToggleState();
+            
+            comp->highCutFreqSlider.setEnabled(!bypassed);
+            comp->highCutSlopeSlider.setEnabled(!bypassed);
+        }
+    };
     
     setSize (600, 480);
 }
