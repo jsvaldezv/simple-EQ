@@ -250,6 +250,11 @@ public:
     
     void resized() override;
     
+    void toggleAnalysisEnablement(bool enabled)
+    {
+        shouldShowFFTAnalysis = enabled;
+    }
+    
 private:
     
     juce::Atomic<bool> parametersChanged {false};
@@ -267,6 +272,8 @@ private:
     juce::Rectangle<int> getAnalisisArea();
     
     PathProducer leftPathProducer, rightPathProducer;
+    
+    bool shouldShowFFTAnalysis = true;
 };
 
 struct PowerButton : juce::ToggleButton {};
