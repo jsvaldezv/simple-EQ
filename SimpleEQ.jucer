@@ -20,6 +20,19 @@
       <FILE id="diXTVY" name="SingleChannelSampleFifo.h" compile="0" resource="0"
             file="Source/SingleChannelSampleFifo.h"/>
     </GROUP>
+    <GROUP id="{5D298ECC-AECA-87DF-97B5-605AC210FE0D}" name="GUI">
+      <FILE id="V3feAF" name="PathProducer.h" compile="0" resource="0" file="Source/PathProducer.h"/>
+      <FILE id="Niif5Q" name="ResponseCurveComponent.cpp" compile="1" resource="0"
+            file="Source/ResponseCurveComponent.cpp"/>
+      <FILE id="ejlBtJ" name="ResponseCurveComponent.h" compile="0" resource="0"
+            file="Source/ResponseCurveComponent.h"/>
+      <FILE id="tAUldb" name="AnalyzerDataGenerator.h" compile="0" resource="0"
+            file="Source/AnalyzerDataGenerator.h"/>
+      <FILE id="sHTW0K" name="FFTDataGenerator.h" compile="0" resource="0"
+            file="Source/FFTDataGenerator.h"/>
+      <FILE id="xcJd8P" name="LookAndFeel.cpp" compile="1" resource="0" file="Source/LookAndFeel.cpp"/>
+      <FILE id="VzKHil" name="LookAndFeel.h" compile="0" resource="0" file="Source/LookAndFeel.h"/>
+    </GROUP>
   </MAINGROUP>
   <JUCEOPTIONS JUCE_STRICT_REFCOUNTEDPOINTER="1" JUCE_VST3_CAN_REPLACE_VST2="0"/>
   <EXPORTFORMATS>
