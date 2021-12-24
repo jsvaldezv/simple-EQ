@@ -47,6 +47,7 @@ struct SingleChannelSampleFifo
     int getNumCompleteBuffersAvailable() const { return audioBufferFifo.getNumAvailableForReading(); }
     bool isPrepared() const { return prepared.get(); }
     int getSize() const { return size.get(); }
+    
     //==============================================================================
     bool getAudioBuffer(BlockType& buf) { return audioBufferFifo.pull(buf); }
     

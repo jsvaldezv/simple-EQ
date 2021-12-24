@@ -18,6 +18,7 @@ struct LookAndFeel : juce::LookAndFeel_V4
 
 struct RotarySliderWithLabels : juce::Slider
 {
+    
     RotarySliderWithLabels(juce::RangedAudioParameter& rap, const juce::String& unitSuffix) :
     juce::Slider(juce::Slider::SliderStyle::RotaryHorizontalVerticalDrag,
                  juce::Slider::TextEntryBoxPosition::NoTextBox),
@@ -51,11 +52,13 @@ private:
     
     juce::RangedAudioParameter* param;
     juce::String suffix;
+    
 };
 
 struct PowerButton : juce::ToggleButton {};
 struct AnalyzerButton : juce::ToggleButton
 {
+    
     void resized() override
     {
         auto bounds = getLocalBounds();
@@ -75,4 +78,5 @@ struct AnalyzerButton : juce::ToggleButton
     }
     
     juce::Path randomPath;
+    
 };

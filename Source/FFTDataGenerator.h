@@ -71,16 +71,20 @@ struct FFTDataGenerator
 
         fftDataFifo.prepare(fftData.size());
     }
+    
     //==============================================================================
     int getFFTSize() const { return 1 << order; }
     int getNumAvailableFFTDataBlocks() const { return fftDataFifo.getNumAvailableForReading(); }
+    
     //==============================================================================
     bool getFFTData(BlockType& fftData) { return fftDataFifo.pull(fftData); }
+    
 private:
+    
     FFTOrder order;
     BlockType fftData;
     std::unique_ptr<juce::dsp::FFT> forwardFFT;
     std::unique_ptr<juce::dsp::WindowingFunction<float>> window;
-    
     Fifo<BlockType> fftDataFifo;
+    
 };
