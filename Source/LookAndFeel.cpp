@@ -11,11 +11,6 @@ void RotarySliderWithLabels::paint(juce::Graphics& g)
     
     auto sliderBounds = getSliderBounds();
     
-//    g.setColour(Colours::red);
-//    g.drawRect(getLocalBounds());
-//    g.setColour(Colours::yellow);
-//    g.drawRect(sliderBounds);
-    
     getLookAndFeel().drawRotarySlider(g,
                                       sliderBounds.getX(),
                                       sliderBounds.getY(),
@@ -71,7 +66,6 @@ juce::String RotarySliderWithLabels::getDisplayString() const
         }
         
         str = juce::String(val, (addK ? 2 : 0));
-        
     }
     else
     {
@@ -104,7 +98,6 @@ juce::Rectangle<int> RotarySliderWithLabels::getSliderBounds() const
     
     return r;
 }
-
 
 void LookAndFeel::drawRotarySlider (juce::Graphics& g,
                                     int x, int y, int width, int height,

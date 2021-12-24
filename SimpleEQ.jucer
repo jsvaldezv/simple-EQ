@@ -2,7 +2,7 @@
 
 <JUCERPROJECT id="L2JOAZ" name="SimpleEQ" projectType="audioplug" useAppConfig="0"
               addUsingNamespaceToJuceHeader="0" displaySplashScreen="1" jucerFormatVersion="1"
-              cppLanguageStandard="17">
+              cppLanguageStandard="17" companyName="jsvaldezv" companyCopyright="jsvaldezv">
   <MAINGROUP id="DJpFwQ" name="SimpleEQ">
     <GROUP id="{CE8D5278-446B-37E7-2613-03D02293922E}" name="Source">
       <FILE id="aQLGiT" name="PluginProcessor.cpp" compile="1" resource="0"
