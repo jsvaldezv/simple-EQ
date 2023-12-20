@@ -1,7 +1,5 @@
 # SimpleEQ from @matkatmusic
 
-### By: Jesús Salvador Valdez Vázquez
-
 <img width="601" alt="Screen Shot 2021-12-29 at 8 12 00 p m" src="https://user-images.githubusercontent.com/47612276/147716500-dc2155d2-6a2c-4fe1-a481-7f926fe5380d.png">
 
 Three bands EQ audio plug-in build with @matkatmusic youtube tutorial.
@@ -18,15 +16,3 @@ Three bands EQ audio plug-in build with @matkatmusic youtube tutorial.
 4. Compile
 5. Copy .vst, .vst3 or .component from Builds folder to your plug-ins folder.
 6. Enjoy!
-
-### Follow me
-
-- Twitter: https://twitter.com/anticode_
-
-## Follow Ear Candy Technologies: 
-
-- Facebook: https://www.facebook.com/earcandytechnologies 
-- Twitter: https://twitter.com/EarCandyTech 
-- Instagram: https://www.instagram.com/earcandytechnology/ 
-- Youtube: https://www.youtube.com/channel/UCnmhLuxpV3PftGI2YR5kpFA 
-- Discord Server: https://discord.gg/44d6SEmw 
