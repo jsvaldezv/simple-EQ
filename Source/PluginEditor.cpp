@@ -22,7 +22,7 @@ SimpleEQAudioProcessorEditor::SimpleEQAudioProcessorEditor (SimpleEQAudioProcess
         lowcutBypassButtonAttachment(audioProcessor.apvts, "LowCut Bypassed", lowcutBypassButton),
         peakBypassButtonAttachment(audioProcessor.apvts, "Peak Bypassed", peakBypassButton),
         highcutBypassButtonAttachment(audioProcessor.apvts, "HighCut Bypassed", highcutBypassButton),
-        analyserEnabledButtonAttachment(audioProcessor.apvts, "Analyser Enabled", analyserEnabledButton)
+        analyserEnabledButtonAttachment(audioProcessor.apvts, "Analyzer Enabled", analyserEnabledButton)
 {
     peakFreqSlider.labels.add({0.f, "20Hz"});
     peakFreqSlider.labels.add({1.f, "20kHz"});
