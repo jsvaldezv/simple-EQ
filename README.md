@@ -7,12 +7,3 @@ Three bands EQ audio plug-in build with @matkatmusic youtube tutorial.
 @matkatmusic EQ tutorial: https://youtu.be/i_Iq4_Kd7Rc
 
 @matkatmusic courses: https://www.programmingformusicians.com/
-
-### Installation
-
-1. JUCE: You can download JUCE from official website https://juce.com/ and follow the tutorials in order to install
-2. Xcode (MacOs): Just download from App Store https://apps.apple.com/us/app/xcode/id497799835?mt=12
-3. Visual Studio (Windows): You can download it from official website https://visualstudio.microsoft.com/es/
-4. Compile
-5. Copy .vst, .vst3 or .component from Builds folder to your plug-ins folder.
-6. Enjoy!
