@@ -1,7 +1,7 @@
 #pragma once
 #include <JuceHeader.h>
-#include "PluginProcessor.h"
-#include "PathProducer.h"
+#include "../PluginProcessor.h"
+#include "../Components/PathProducer.h"
 
 struct ResponseCurveComponent : juce::Component,
                                 juce::AudioProcessorParameter::Listener,

@@ -14,25 +14,29 @@
             file="Source/PluginEditor.cpp"/>
       <FILE id="uGGVE7" name="PluginEditor.h" compile="0" resource="0" file="Source/PluginEditor.h"/>
     </GROUP>
-    <GROUP id="{347B29BE-970C-3C4F-B385-F81B7751EA13}" name="DSP">
-      <FILE id="Lb0azY" name="ChainSettings.h" compile="0" resource="0" file="Source/ChainSettings.h"/>
-      <FILE id="m3LatV" name="DSPHelpers.h" compile="0" resource="0" file="Source/DSPHelpers.h"/>
-      <FILE id="TyCodG" name="Fifo.h" compile="0" resource="0" file="Source/Fifo.h"/>
-      <FILE id="diXTVY" name="SingleChannelSampleFifo.h" compile="0" resource="0"
-            file="Source/SingleChannelSampleFifo.h"/>
+    <GROUP id="{4ABD6DDF-4E4A-3227-C24F-5E5EA0ACCA8F}" name="DSP">
+      <FILE id="gCVcXg" name="ChainSettings.h" compile="0" resource="0" file="Source/DSP/ChainSettings.h"/>
+      <FILE id="SGUBsp" name="Fifo.h" compile="0" resource="0" file="Source/DSP/Fifo.h"/>
+      <FILE id="Y1xKUK" name="SingleChannelSampleFifo.h" compile="0" resource="0"
+            file="Source/DSP/SingleChannelSampleFifo.h"/>
     </GROUP>
-    <GROUP id="{5D298ECC-AECA-87DF-97B5-605AC210FE0D}" name="GUI">
-      <FILE id="V3feAF" name="PathProducer.h" compile="0" resource="0" file="Source/PathProducer.h"/>
-      <FILE id="Niif5Q" name="ResponseCurveComponent.cpp" compile="1" resource="0"
-            file="Source/ResponseCurveComponent.cpp"/>
-      <FILE id="ejlBtJ" name="ResponseCurveComponent.h" compile="0" resource="0"
-            file="Source/ResponseCurveComponent.h"/>
-      <FILE id="tAUldb" name="AnalyzerDataGenerator.h" compile="0" resource="0"
-            file="Source/AnalyzerDataGenerator.h"/>
-      <FILE id="sHTW0K" name="FFTDataGenerator.h" compile="0" resource="0"
-            file="Source/FFTDataGenerator.h"/>
-      <FILE id="xcJd8P" name="LookAndFeel.cpp" compile="1" resource="0" file="Source/LookAndFeel.cpp"/>
-      <FILE id="VzKHil" name="LookAndFeel.h" compile="0" resource="0" file="Source/LookAndFeel.h"/>
+    <GROUP id="{DEFE6E86-217F-8B7F-E379-77CA93BE0C3D}" name="Components">
+      <FILE id="dYf4Ot" name="AnalyzerDataGenerator.h" compile="0" resource="0"
+            file="Source/Components/AnalyzerDataGenerator.h"/>
+      <FILE id="C8CGyz" name="FFTDataGenerator.h" compile="0" resource="0"
+            file="Source/Components/FFTDataGenerator.h"/>
+      <FILE id="H27FXq" name="PathProducer.h" compile="0" resource="0" file="Source/Components/PathProducer.h"/>
+      <FILE id="kkoGj8" name="ResponseCurveComponent.cpp" compile="1" resource="0"
+            file="Source/Components/ResponseCurveComponent.cpp"/>
+      <FILE id="qXtYHy" name="ResponseCurveComponent.h" compile="0" resource="0"
+            file="Source/Components/ResponseCurveComponent.h"/>
+    </GROUP>
+    <GROUP id="{4E507A44-059F-F8A7-A0C8-B73E65DE32DA}" name="LookAndFeel">
+      <FILE id="MTAii9" name="LookAndFeel.cpp" compile="1" resource="0" file="Source/LookAndFeel/LookAndFeel.cpp"/>
+      <FILE id="LMtOj8" name="LookAndFeel.h" compile="0" resource="0" file="Source/LookAndFeel/LookAndFeel.h"/>
+    </GROUP>
+    <GROUP id="{26D77719-2807-F139-85AC-74B86DC90AF2}" name="Helpers">
+      <FILE id="gw9uxP" name="DSP.h" compile="0" resource="0" file="Source/Helpers/DSP.h"/>
     </GROUP>
   </MAINGROUP>
   <JUCEOPTIONS JUCE_STRICT_REFCOUNTEDPOINTER="1" JUCE_VST3_CAN_REPLACE_VST2="0"/>

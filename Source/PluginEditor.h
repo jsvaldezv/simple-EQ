@@ -1,11 +1,11 @@
 #pragma once
 #include <JuceHeader.h>
 #include "PluginProcessor.h"
-#include "FFTDataGenerator.h"
-#include "AnalyzerDataGenerator.h"
-#include "LookAndFeel.h"
-#include "ResponseCurveComponent.h"
-#include "PathProducer.h"
+#include "Components/FFTDataGenerator.h"
+#include "Components/AnalyzerDataGenerator.h"
+#include "Components/ResponseCurveComponent.h"
+#include "Components/PathProducer.h"
+#include "LookAndFeel/LookAndFeel.h"
 
 class SimpleEQAudioProcessorEditor  : public juce::AudioProcessorEditor
 {

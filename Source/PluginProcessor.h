@@ -1,9 +1,9 @@
 #pragma once
 #include <JuceHeader.h>
-#include "Fifo.h"
-#include "SingleChannelSampleFifo.h"
-#include "ChainSettings.h"
-#include "DSPHelpers.h"
+#include "DSP/Fifo.h"
+#include "DSP/SingleChannelSampleFifo.h"
+#include "DSP/ChainSettings.h"
+#include "Helpers/DSP.h"
 
 class SimpleEQAudioProcessor  : public juce::AudioProcessor
 {
